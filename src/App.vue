@@ -1,11 +1,11 @@
 <script setup>
+import Task from './components/Task.vue';
+
 
 </script>
 
 <template>
-<div>
-  <p>SASA</p>
-</div>
+<Task></Task>
 </template>
 
 <style scoped>
