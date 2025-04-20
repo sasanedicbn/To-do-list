@@ -14,9 +14,12 @@
         <div class="taskItems">
           <ul>
             <li v-for="task of tasks">
-              <button>{{ task.title }}</button>
-              <button>{{ task.completed }}</button>
-              <!-- <button><i class="far fa-trash-alt"></i></button> -->
+              <button><span>
+                <i v-if="task.completed" class="fa-solid fa-check"></i>
+                <i v-else class="fa-solid fa-hourglass-start"></i>
+               </span>
+                {{ task.title }}</button>
+              <button><i class="far fa-trash-alt"></i></button>
             </li>
           </ul>
         </div>
