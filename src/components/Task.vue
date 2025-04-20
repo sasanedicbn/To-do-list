@@ -13,13 +13,10 @@
         <!-- task lists -->
         <div class="taskItems">
           <ul>
-            <li>
-              <button>Learn Vue JS</button>
-              <button><i class="far fa-trash-alt"></i></button>
-            </li>
-            <li>
-              <button>Watch netflix</button>
-              <button><i class="far fa-trash-alt"></i></button>
+            <li v-for="task of tasks">
+              <button>{{ task.title }}</button>
+              <button>{{ task.completed }}</button>
+              <!-- <button><i class="far fa-trash-alt"></i></button> -->
             </li>
           </ul>
         </div>
@@ -33,7 +30,6 @@
           <span>Pending Tasks: </span>
         </div>
         <p>{{ inputValue }}</p>
-        <p>{{ tasks }}</p>
       </div>
     </div>
   </template>
