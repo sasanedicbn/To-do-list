@@ -12,7 +12,7 @@
         </div>
         <!-- task lists -->
         <div class="taskItems">
-          <ul>
+            <ul>
             <li v-for="task of tasks.filter(t => t.completed)">
               <button><span>
                 <i  class="fa-solid fa-check"></i>
@@ -22,14 +22,23 @@
             </li>
           </ul>
         </div>
-        <!-- buttons -->
+        <!-- buttons --> 
         <div class="clearBtns">
           <button>Clear completed</button>
           <button>Clear all</button>
         </div>
         <!-- pending task -->
-        <div class="pendingTasks">
+        <div class="taskItems">
           <span>Pending Tasks: </span>
+          <ul>
+            <li v-for="task of tasks.filter(t => !t.completed)">
+             <button>
+                <span><i class="fa-solid fa-hourglass-start"></i></span>
+                {{ task.title }}
+             </button>
+                <button><i class="far fa-trash-alt"></i></button>
+            </li>
+          </ul>
         </div>
         <p>{{ inputValue }}</p>
       </div>
