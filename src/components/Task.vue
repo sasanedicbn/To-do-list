@@ -13,10 +13,9 @@
         <!-- task lists -->
         <div class="taskItems">
           <ul>
-            <li v-for="task of tasks">
+            <li v-for="task of tasks.filter(t => t.completed)">
               <button><span>
-                <i v-if="task.completed" class="fa-solid fa-check"></i>
-                <i v-else class="fa-solid fa-hourglass-start"></i>
+                <i  class="fa-solid fa-check"></i>
                </span>
                 {{ task.title }}</button>
               <button><i class="far fa-trash-alt"></i></button>
@@ -42,11 +41,16 @@
   
     //  const  name = ref("Task");
      const inputValue = ref("")
+
      const props = defineProps({
       tasks: Array,
      })
     
      const {tasks} = props
+
+     function addTask(task) {
+        tasks.push(task)
+     }
   
   </script>
   
