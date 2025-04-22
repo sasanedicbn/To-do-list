@@ -15,7 +15,7 @@ export default {
   },
   methods:{
     deleteTask(id){
-      tasks.filter((task, _) => task.id !== id)
+    this.tasks.filter((task, _) => task.id !== id)
    }
   },
   data() {
