@@ -29,7 +29,7 @@
         </div>
         <!-- pending task -->
         <div class="taskItems">
-          <span>Pending Tasks: </span>
+          <span class="pendingTask">Pending Tasks: </span>
           <ul>
             <li v-for="task of tasks.filter(t => !t.completed)">
              <button>
