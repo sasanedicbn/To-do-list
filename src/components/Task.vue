@@ -7,8 +7,8 @@
         </div>
         <!-- form -->
         <div class="form">
-          <input type="text" placeholder="New Task" v-model="inputValue" />
-          <button><i class="fas fa-plus"></i></button>
+          <input type="text" placeholder="New Task" v-model="inputValue"/>
+          <button @click="addTask"><i class="fas fa-plus"></i></button>
         </div>
         <!-- task lists -->
         <div class="taskItems">
@@ -48,7 +48,6 @@
   <script setup>
   import { ref } from 'vue'
   
-    //  const  name = ref("Task");
      const inputValue = ref("")
 
      const props = defineProps({
@@ -57,8 +56,15 @@
     
      const {tasks} = props
 
-     function addTask(task) {
-        tasks.push(task)
+     function addTask() {
+        if(!inputValue.value.trim()) return;
+        const newTask ={
+            title: inputValue.value,
+            completed: false,
+        }
+        tasks.push(newTask)
+        inputValue.value = '';
+        console.log(newTask, 'task')
      }
   
   </script>
