@@ -152,3 +152,6 @@ task items
 .pendingTask {
   margin-bottom: 2rem;
 }
+.taskItems-actions button:first-child{
+  padding: 0 1rem;
+}

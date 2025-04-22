@@ -31,12 +31,15 @@
         <div class="taskItems">
           <span class="pendingTask">Pending Tasks: </span>
           <ul>
-            <li v-for="task of tasks.filter(t => !t.completed)">
+            <li v-for="task of tasks.filter((task,index) => !task.completed)">
              <button>
                 <span><i class="fa-solid fa-hourglass-start"></i></span>
                 {{ task.title }}
              </button>
+             <div class="taskItems-actions">
+                <button @click="finishTask(task)"><i  class="fa-solid fa-check"></i></button>
                 <button><i class="far fa-trash-alt"></i></button>
+             </div>
             </li>
           </ul>
         </div>
@@ -58,13 +61,19 @@
 
      function addTask() {
         if(!inputValue.value.trim()) return;
-        const newTask ={
+
+        const newTask = {
             title: inputValue.value,
             completed: false,
         }
+
         tasks.push(newTask)
         inputValue.value = '';
-        console.log(newTask, 'task')
+     }
+
+     function finishTask(task){
+        task.completed = true;
+        console.log(task, 'event')
      }
   
   </script>
