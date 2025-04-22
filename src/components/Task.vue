@@ -74,13 +74,5 @@
      function finishTask(task){
         task.completed = true;
      }
-
-    //  function deleteTask(task){
-    //     const taskId = task
-    //     console.log(taskId, 'taskid')
-    //     tasks.filter((task, index) => task.id !== taskId)
-    //   console.log(task)
-    //  }
-  
   </script>
   
