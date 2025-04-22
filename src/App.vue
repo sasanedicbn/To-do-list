@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Task :tasks="tasks" @deleteTask="deleteTask"></Task>
+    <Task :tasks="tasks" @deleteTask="deleteTask" @addTask="addTask" ></Task>
   </div>
 </template>
 
@@ -15,8 +15,20 @@ export default {
   },
   methods:{
     deleteTask(id){
-    this.tasks.filter((task, _) => task.id !== id)
-   }
+     this.tasks = this.tasks.filter((task, _) => task.id !== id)
+    },
+     addTask(inputValue) {
+        if(!inputValue.trim()) return;
+
+        const newTask = {
+            id: Math.random(),
+            title: inputValue,
+            completed: false,
+        }
+
+        this.tasks = this.tasks.push(newTask)
+        inputValue = '';
+     }
   },
   data() {
     return {

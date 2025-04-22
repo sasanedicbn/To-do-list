@@ -8,7 +8,7 @@
         <!-- form -->
         <div class="form">
           <input type="text" placeholder="New Task" v-model="inputValue"/>
-          <button @click="addTask"><i class="fas fa-plus"></i></button>
+          <button  @click="$emit('addTask', inputValue)"><i class="fas fa-plus"></i></button>
         </div>
         <!-- task lists -->
         <div class="taskItems">
@@ -57,19 +57,8 @@
       tasks: Array,
      })
     
-     const {tasks} = props
+     const { tasks } = props
 
-     function addTask() {
-        if(!inputValue.value.trim()) return;
-
-        const newTask = {
-            title: inputValue.value,
-            completed: false,
-        }
-
-        tasks.push(newTask)
-        inputValue.value = '';
-     }
 
      function finishTask(task){
         task.completed = true;
