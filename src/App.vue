@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Task :tasks="tasks"></Task>
+    <Task :tasks="tasks" @deleteTask="deleteTask"></Task>
   </div>
 </template>
 
@@ -12,6 +12,11 @@ export default {
   name: "App",
   components: {
     Task,
+  },
+  methods:{
+    deleteTask(id){
+      tasks.filter((task, _) => task.id !== id)
+   }
   },
   data() {
     return {

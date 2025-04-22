@@ -38,7 +38,7 @@
              </button>
              <div class="taskItems-actions">
                 <button @click="finishTask(task)"><i  class="fa-solid fa-check"></i></button>
-                <button><i class="far fa-trash-alt"></i></button>
+                <button   @click="$emit('deleteTask', task.id)"><i class="far fa-trash-alt"></i></button>
              </div>
             </li>
           </ul>
@@ -73,8 +73,14 @@
 
      function finishTask(task){
         task.completed = true;
-        console.log(task, 'event')
      }
+
+    //  function deleteTask(task){
+    //     const taskId = task
+    //     console.log(taskId, 'taskid')
+    //     tasks.filter((task, index) => task.id !== taskId)
+    //   console.log(task)
+    //  }
   
   </script>
   
