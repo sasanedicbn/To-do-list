@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <Task :tasks="tasks" @deleteTask="deleteTask" @addTask="addTask" ></Task>
+    <Task :tasks="tasks" @deleteTask="deleteTask" @addTask="addTask" @finishTask="finishTask" ></Task>
   </div>
 </template>
 
@@ -28,8 +28,14 @@ export default {
 
         this.tasks = this.tasks.push(newTask)
         inputValue = '';
-     }
+     },
+
+     finishTask(task){
+      const index =  this.tasks.findIndex(t => t.id === task.id)
+      this.tasks[index].completed = true;
+     },
   },
+  
   data() {
     return {
       tasks: [
