@@ -5,6 +5,7 @@
       @deleteTask="deleteTask" 
       @addTask="addTask" 
       @finishTask="finishTask"
+      @clearCompletedTasks="clearCompletedTasks"
     />
   </div>
 </template>
@@ -65,4 +66,8 @@ const finishTask = (task) => {
     tasks.value[index].completed = true;
   }
 };
+
+const clearCompletedTasks = () => {
+  tasks.value = []
+}
 </script>
