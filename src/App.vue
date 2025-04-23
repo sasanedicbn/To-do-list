@@ -1,76 +1,66 @@
 <template>
   <div id="app">
-    <Task :tasks="tasks" @deleteTask="deleteTask" @addTask="addTask" @finishTask="finishTask" ></Task>
+    <Task 
+      :tasks="tasks" 
+      @deleteTask="deleteTask" 
+      @addTask="addTask" 
+      @finishTask="finishTask"
+    />
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from 'vue';
 import Task from './components/Task.vue';
 
-
-export default {
-  name: "App",
-  components: {
-    Task,
+const tasks = ref([
+  {
+    id: 1,
+    title: "Learn Vue JS",
+    completed: true,
   },
-  methods:{
-    deleteTask(id){
-      console.log(id, 'id from child')
-    //  this.tasks = this.tasks.splice((task, _) => task.id === id)
-       this.$set(this, 'tasks', this.tasks.filter(task => task.id !== id));
-
-    },
-     addTask(inputValue) {
-        if(!inputValue.trim()) return;
-
-        const newTask = {
-            id: Math.random(),
-            title: inputValue,
-            completed: false,
-        }
-
-        this.tasks.push(newTask)
-        inputValue = '';
-     },
-
-     finishTask(task){
-      const index =  this.tasks.findIndex(t => t.id === task.id)
-      if (index !== -1) {
-       this.tasks[index].completed = true
-        }
-     },
+  {
+    id: 2,
+    title: "Watch netflix",
+    completed: true,
   },
-  
-  data() {
-    return {
-      tasks: [
-        {
-          id: 1,
-          title: "Learn Vue JS",
-          completed: true,
-        },
-        {
-          id: 2,
-          title: "Watch netflix",
-          completed: true,
-        },
-        {
-          id: 3,
-          title: "Go shopping",
-          completed: false,
-        },
-        {
-          id: 4,
-          title: "Learn guitar",
-          completed: false,
-        },
-        {
-          id: 5,
-          title: "Send email",
-          completed: false,
-        },
-      ],
-    };
+  {
+    id: 3,
+    title: "Go shopping",
+    completed: false,
   },
+  {
+    id: 4,
+    title: "Learn guitar",
+    completed: false,
+  },
+  {
+    id: 5,
+    title: "Send email",
+    completed: false,
+  },
+]);
+
+const deleteTask = (id) => {
+  tasks.value = tasks.value.filter(task => task.id !== id);
+};
+
+const addTask = (inputValue) => {
+  if(!inputValue.trim()) return;
+
+  const newTask = {
+    id: Math.random(),
+    title: inputValue,
+    completed: false,
+  };
+
+  tasks.value.push(newTask);
+};
+
+const finishTask = (task) => {
+  const index = tasks.value.findIndex(t => t.id === task.id);
+  if (index !== -1) {
+    tasks.value[index].completed = true;
+  }
 };
 </script>
