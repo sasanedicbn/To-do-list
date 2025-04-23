@@ -15,7 +15,10 @@ export default {
   },
   methods:{
     deleteTask(id){
-     this.tasks = this.tasks.filter((task, _) => task.id !== id)
+      console.log(id, 'id from child')
+    //  this.tasks = this.tasks.splice((task, _) => task.id === id)
+       this.$set(this, 'tasks', this.tasks.filter(task => task.id !== id));
+
     },
      addTask(inputValue) {
         if(!inputValue.trim()) return;
@@ -26,13 +29,15 @@ export default {
             completed: false,
         }
 
-        this.tasks = this.tasks.push(newTask)
+        this.tasks.push(newTask)
         inputValue = '';
      },
 
      finishTask(task){
       const index =  this.tasks.findIndex(t => t.id === task.id)
-      this.tasks[index].completed = true;
+      if (index !== -1) {
+       this.tasks[index].completed = true
+        }
      },
   },
   
