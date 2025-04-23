@@ -13,12 +13,12 @@
         <!-- task lists -->
         <div class="taskItems">
             <ul>
-            <li v-for="task of tasks.filter(t => t.completed)">
+            <li v-for="task of props.tasks.filter(t => t.completed)">
               <button><span>
                 <i  class="fa-solid fa-check"></i>
                </span>
                 {{ task.title }}</button>
-              <button><i class="far fa-trash-alt"></i></button>
+              <button @click="$emit('deleteTask', task.id)"><i class="far fa-trash-alt"></i></button>
             </li>
           </ul>
         </div>
@@ -31,7 +31,7 @@
         <div class="taskItems">
           <span class="pendingTask">Pending Tasks: </span>
           <ul>
-            <li v-for="task of tasks.filter((task,index) => !task.completed)">
+            <li v-for="task of props.tasks.filter((task,index) => !task.completed)">
              <button>
                 <span><i class="fa-solid fa-hourglass-start"></i></span>
                 {{ task.title }}
@@ -57,7 +57,5 @@
       tasks: Array,
      })
     
-     const { tasks } = props
-
   </script>
   

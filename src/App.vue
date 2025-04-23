@@ -42,7 +42,9 @@ const tasks = ref([
 ]);
 
 const deleteTask = (id) => {
+  console.log(id, 'id', typeof(id))
   tasks.value = tasks.value.filter(task => task.id !== id);
+  console.log(tasks.value, 'nakon')
 };
 
 const addTask = (inputValue) => {
