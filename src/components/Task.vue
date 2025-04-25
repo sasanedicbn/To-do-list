@@ -21,7 +21,7 @@
               <button @click="emit('deleteTask', task.id)"><i class="far fa-trash-alt"></i></button>
             </li>
           </ul>
-          <p v-else>No more completed task...</p>
+          <p v-else class="no-more">No more completed task...</p>
         </div>
         <!-- buttons --> 
         <div class="clearBtns">
@@ -43,7 +43,7 @@
              </div>
             </li>
           </ul>
-          <p v-else >No more pending task...</p>
+          <p v-else class="no-more">No more pending task...</p>
         </div>
         <p>{{ inputValue }}</p>
       </div>

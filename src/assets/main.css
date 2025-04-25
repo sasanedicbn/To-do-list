@@ -155,3 +155,8 @@ task items
 .taskItems-actions button:first-child{
   padding: 0 1rem;
 }
+.no-more{
+  text-align: center;
+  margin: 1.5rem 0;
+  color: rgb(111, 107, 107);
+}
