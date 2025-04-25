@@ -37,15 +37,21 @@
                 <span><i class="fa-solid fa-hourglass-start"></i></span>
                 {{ task.title }}
              </button>
-             <div v-else>
-              <EditTask :task="task" />
+             <div v-else class="editTask">
+              <EditTask :task="task" @updateTask="updateTask"/>
              </div>
-             <div class="taskItems-actions">
-                <button v-on:click="editTask(task.id)">EDIT</button>
-                <button  @click="emit('finishTask', task)"><i  class="fa-solid fa-check"></i></button>
-                <button   @click="emit('deleteTask', task.id)"><i class="far fa-trash-alt"></i></button>
-             </div>
-            </li>
+             <div class="taskItems-actions" v-if="editingTaskId !== task.id">
+              <button @click="editTask(task.id)">
+               <i class="fas fa-edit"></i>
+              </button>
+              <button @click="emit('finishTask', task)">
+               <i class="fa-solid fa-check"></i>
+            </button>
+           <button @click="emit('deleteTask', task.id)">
+            <i class="far fa-trash-alt"></i>
+          </button>
+         </div>
+            </li> 
           </ul>
           <p v-else class="no-more">No more pending task...</p>
         </div>
@@ -79,6 +85,13 @@ import EditTask from './EditTask.vue'
 
       inputValue.value = "";
       
+     }
+
+     const updateTask = (updateTask) => {
+      console.log(updateTask, 'ovo je updejt')
+       emit("addTask", updateTask.value)
+      // emit("updateTask", updatedTask); 
+      editingTaskId.value = null; 
      }
      
      const editTask = (taskId) => {

@@ -152,11 +152,23 @@ task items
 .pendingTask {
   margin-bottom: 2rem;
 }
-.taskItems-actions button:first-child{
-  padding: 0 1rem;
+.taskItems-actions button{
+  padding: 0 .3rem;
 }
 .no-more{
   text-align: center;
   margin: 1.5rem 0;
   color: rgb(111, 107, 107);
+}
+/* EDIT */
+.editTask{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.editTask button {
+  margin: 0 .3rem;
+}
+.editTask button:first-child() {
+  margin-left: 1rem;
 }
