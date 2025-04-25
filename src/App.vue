@@ -5,9 +5,11 @@
       @deleteTask="deleteTask" 
       @addTask="addTask" 
       @finishTask="finishTask"
+      @clearAllTasks="clearAllTasks"
       @clearCompletedTasks="clearCompletedTasks"
     />
   </div>
+  <button v-on:click="clearCompletedTasks">CLEAR</button>
 </template>
 
 <script setup>
@@ -67,7 +69,11 @@ const finishTask = (task) => {
   }
 };
 
-const clearCompletedTasks = () => {
+const clearAllTasks = () => {
   tasks.value = []
+}
+
+const clearCompletedTasks = () => {
+ tasks.value = tasks.value.filter((task) => !task.completed)
 }
 </script>

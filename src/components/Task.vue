@@ -24,8 +24,8 @@
         </div>
         <!-- buttons --> 
         <div class="clearBtns">
-          <button  >Clear completed</button>
-          <button @click="$emit('clearCompletedTasks')">Clear all</button>
+          <button @click="$emit('clearCompletedTasks')">Clear completed</button>
+          <button @click="$emit('clearAllTasks')">Clear all</button>
         </div>
         <!-- pending task -->
         <div class="taskItems">
