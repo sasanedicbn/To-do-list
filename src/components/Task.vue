@@ -55,7 +55,6 @@
           </ul>
           <p v-else class="no-more">No more pending task...</p>
         </div>
-        <p>{{ inputValue }}</p>
       </div>
     </div>
   </template>
@@ -66,7 +65,6 @@ import EditTask from './EditTask.vue'
      const emit = defineEmits(['addTask', 'deleteTask', 'finishTask', 'clearAllTasks', 'clearCompletedTasks'])
      const inputValue = ref("")
      const editingTaskId = ref(null)
-    //  const showEdit = ref(true)
 
      const props = defineProps({
       tasks: Array,
@@ -90,7 +88,6 @@ import EditTask from './EditTask.vue'
      const updateTask = (updateTask) => {
       console.log(updateTask, 'ovo je updejt')
        emit("addTask", updateTask.value)
-      // emit("updateTask", updatedTask); 
       editingTaskId.value = null; 
      }
      
