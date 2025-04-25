@@ -38,6 +38,7 @@
                 {{ task.title }}
              </button>
              <div class="taskItems-actions">
+                <button>EDIT</button>
                 <button  @click="emit('finishTask', task)"><i  class="fa-solid fa-check"></i></button>
                 <button   @click="emit('deleteTask', task.id)"><i class="far fa-trash-alt"></i></button>
              </div>
