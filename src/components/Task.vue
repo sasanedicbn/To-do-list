@@ -12,8 +12,8 @@
         </div>
         <!-- task lists -->
         <div class="taskItems">
-            <ul>
-            <li v-for="task of props.tasks.filter(t => t.completed)">
+            <ul v-if="hasCompletedTask" >
+            <li v-for="task of competedTask">
               <button><span>
                 <i  class="fa-solid fa-check"></i>
                </span>
@@ -21,6 +21,7 @@
               <button @click="emit('deleteTask', task.id)"><i class="far fa-trash-alt"></i></button>
             </li>
           </ul>
+          <p v-else>No more completed task...</p>
         </div>
         <!-- buttons --> 
         <div class="clearBtns">
@@ -30,8 +31,8 @@
         <!-- pending task -->
         <div class="taskItems">
           <span class="pendingTask">Pending Tasks: </span>
-          <ul>
-            <li v-for="task of props.tasks.filter((task,index) => !task.completed)">
+          <ul v-if="hasPendingTask">
+            <li v-for="task of pendingTask">
              <button>
                 <span><i class="fa-solid fa-hourglass-start"></i></span>
                 {{ task.title }}
@@ -42,6 +43,7 @@
              </div>
             </li>
           </ul>
+          <p v-else >No more pending task...</p>
         </div>
         <p>{{ inputValue }}</p>
       </div>
@@ -49,13 +51,19 @@
   </template>
   
   <script setup>
-  import { ref } from 'vue'
+  import { computed, ref } from 'vue'
      const emit = defineEmits(['addTask', 'deleteTask', 'finishTask', 'clearAllTasks', 'clearCompletedTasks'])
      const inputValue = ref("")
 
      const props = defineProps({
       tasks: Array,
      })
+
+     const competedTask = computed(() =>  props.tasks.filter(t => t.completed))
+     const hasCompletedTask = computed(() =>  competedTask.value.length > 0)
+     const pendingTask = computed(() => props.tasks.filter(t => !t.completed))
+     const hasPendingTask = computed(() => pendingTask.value.length > 0)
+    
 
      const handleAddTask = () => {
       if(!inputValue.value.trim()) return;
