@@ -9,7 +9,6 @@
       @clearCompletedTasks="clearCompletedTasks"
     />
   </div>
-  <button v-on:click="clearCompletedTasks">CLEAR</button>
 </template>
 
 <script setup>
@@ -51,8 +50,7 @@ const deleteTask = (id) => {
 };
 
 const addTask = (inputValue) => {
-  if(!inputValue.trim()) return;
-
+  console.log(inputValue)
   const newTask = {
     id: Math.random(),
     title: inputValue,

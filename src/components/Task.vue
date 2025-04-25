@@ -8,7 +8,7 @@
         <!-- form -->
         <div class="form">
           <input type="text" placeholder="New Task" v-model="inputValue"/>
-          <button  @click="$emit('addTask', inputValue)"><i class="fas fa-plus"></i></button>
+          <button  @click="handleAddTask"><i class="fas fa-plus"></i></button>
         </div>
         <!-- task lists -->
         <div class="taskItems">
@@ -18,14 +18,14 @@
                 <i  class="fa-solid fa-check"></i>
                </span>
                 {{ task.title }}</button>
-              <button @click="$emit('deleteTask', task.id)"><i class="far fa-trash-alt"></i></button>
+              <button @click="emit('deleteTask', task.id)"><i class="far fa-trash-alt"></i></button>
             </li>
           </ul>
         </div>
         <!-- buttons --> 
         <div class="clearBtns">
-          <button @click="$emit('clearCompletedTasks')">Clear completed</button>
-          <button @click="$emit('clearAllTasks')">Clear all</button>
+          <button @click="emit('clearCompletedTasks')">Clear completed</button>
+          <button @click="emit('clearAllTasks')">Clear all</button>
         </div>
         <!-- pending task -->
         <div class="taskItems">
@@ -37,8 +37,8 @@
                 {{ task.title }}
              </button>
              <div class="taskItems-actions">
-                <button  @click="$emit('finishTask', task)"><i  class="fa-solid fa-check"></i></button>
-                <button   @click="$emit('deleteTask', task.id)"><i class="far fa-trash-alt"></i></button>
+                <button  @click="emit('finishTask', task)"><i  class="fa-solid fa-check"></i></button>
+                <button   @click="emit('deleteTask', task.id)"><i class="far fa-trash-alt"></i></button>
              </div>
             </li>
           </ul>
@@ -50,12 +50,21 @@
   
   <script setup>
   import { ref } from 'vue'
-  
+     const emit = defineEmits(['addTask', 'deleteTask', 'finishTask', 'clearAllTasks', 'clearCompletedTasks'])
      const inputValue = ref("")
 
      const props = defineProps({
       tasks: Array,
      })
+
+     const handleAddTask = () => {
+      if(!inputValue.value.trim()) return;
+
+      emit("addTask", inputValue.value)
+
+      inputValue.value = "";
+      
+     }
     
   </script>
   
