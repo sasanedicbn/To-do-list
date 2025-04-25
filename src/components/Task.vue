@@ -32,13 +32,16 @@
         <div class="taskItems">
           <span class="pendingTask">Pending Tasks: </span>
           <ul v-if="hasPendingTask">
-            <li v-for="task of pendingTask">
-             <button>
+            <li v-for="task of pendingTask" :key="task.id">
+             <button v-if="editingTaskId !== task.id">
                 <span><i class="fa-solid fa-hourglass-start"></i></span>
                 {{ task.title }}
              </button>
+             <div v-else>
+              <EditTask :task="task" />
+             </div>
              <div class="taskItems-actions">
-                <button>EDIT</button>
+                <button v-on:click="editTask(task.id)">EDIT</button>
                 <button  @click="emit('finishTask', task)"><i  class="fa-solid fa-check"></i></button>
                 <button   @click="emit('deleteTask', task.id)"><i class="far fa-trash-alt"></i></button>
              </div>
@@ -53,8 +56,11 @@
   
   <script setup>
   import { computed, ref } from 'vue'
+import EditTask from './EditTask.vue'
      const emit = defineEmits(['addTask', 'deleteTask', 'finishTask', 'clearAllTasks', 'clearCompletedTasks'])
      const inputValue = ref("")
+     const editingTaskId = ref(null)
+    //  const showEdit = ref(true)
 
      const props = defineProps({
       tasks: Array,
@@ -73,6 +79,10 @@
 
       inputValue.value = "";
       
+     }
+     
+     const editTask = (taskId) => {
+      editingTaskId.value = taskId
      }
     
   </script>
